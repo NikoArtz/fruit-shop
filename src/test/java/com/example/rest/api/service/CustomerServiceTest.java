@@ -1,5 +1,6 @@
 package com.example.rest.api.service;
 
+import com.example.rest.api.controller.CustomerController;
 import com.example.rest.api.domain.Customer;
 import com.example.rest.api.mapper.CustomerMapper;
 import com.example.rest.api.model.CustomerDTO;
@@ -92,7 +93,7 @@ class CustomerServiceTest {
 
         //then
         assertEquals(customerDTO.getFirstName(), savedDto.getFirstName());
-        assertEquals("/api/v1/customers/1", savedDto.getCustomerUrl());
+        assertEquals(CustomerController.BASE_URL + "/1", savedDto.getCustomerUrl());
     }
 
     @Test
@@ -114,7 +115,7 @@ class CustomerServiceTest {
 
         //then
         assertEquals(customerDTO.getFirstName(), savedDto.getFirstName());
-        assertEquals("/api/v1/customers/1", savedDto.getCustomerUrl());
+        assertEquals(CustomerController.BASE_URL + "/1", savedDto.getCustomerUrl());
     }
 
     @Test

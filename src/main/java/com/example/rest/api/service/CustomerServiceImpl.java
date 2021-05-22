@@ -1,5 +1,6 @@
 package com.example.rest.api.service;
 
+import com.example.rest.api.controller.CustomerController;
 import com.example.rest.api.domain.Customer;
 import com.example.rest.api.mapper.CustomerMapper;
 import com.example.rest.api.model.CustomerDTO;
@@ -31,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .stream()
                 .map(customer -> {
                     CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-                    customerDTO.setCustomerUrl("/api/v1/customers/" + customer.getId());
+                    customerDTO.setCustomerUrl(getCustomerUrl(customer.getId()));
                     return customerDTO;
                 })
                 .collect(Collectors.toList());
@@ -54,7 +55,7 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDTO saveAndReturnDTO(Customer customer) {
         Customer savedCustomer = customerRepository.save(customer);
         CustomerDTO returnDto = customerMapper.customerToCustomerDTO(savedCustomer);
-        returnDto.setCustomerUrl("/api/v1/customers/" + savedCustomer.getId());
+        returnDto.setCustomerUrl(getCustomerUrl(savedCustomer.getId()));
         return returnDto;
     }
 
@@ -75,7 +76,7 @@ public class CustomerServiceImpl implements CustomerService {
                 customer.setLastName(customerDTO.getLastName());
             }
             CustomerDTO returnDto = customerMapper.customerToCustomerDTO(customerRepository.save(customer));
-            returnDto.setCustomerUrl("/api/v1/customer/" + id);
+            returnDto.setCustomerUrl(getCustomerUrl(id));
             return returnDto;
         }).orElseThrow(RuntimeException::new);
     }
@@ -83,5 +84,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void deleteCustomerById(Long id) {
         customerRepository.deleteById(id);
+    }
+
+    private String getCustomerUrl(Long id) {
+        return CustomerController.BASE_URL + "/" + id;
     }
 }
