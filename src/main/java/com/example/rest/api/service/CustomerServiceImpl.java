@@ -1,5 +1,6 @@
 package com.example.rest.api.service;
 
+import com.example.rest.api.domain.Customer;
 import com.example.rest.api.mapper.CustomerMapper;
 import com.example.rest.api.model.CustomerDTO;
 import com.example.rest.api.repository.CustomerRepository;
@@ -42,5 +43,15 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findById(id)
                 .map(customerMapper::customerToCustomerDTO)
                 .orElseThrow(RuntimeException::new);
+    }
+
+    @Override
+    public CustomerDTO createNewCustomer(CustomerDTO customerDTO) {
+        Customer customer = customerMapper.customerDTOToCustomer(customerDTO);
+        Customer savedCustomer = customerRepository.save(customer);
+        CustomerDTO returnDto = customerMapper.customerToCustomerDTO(savedCustomer);
+        returnDto.setCustomerUrl("/api/v1/customers/" + savedCustomer.getId());
+
+        return returnDto;
     }
 }
