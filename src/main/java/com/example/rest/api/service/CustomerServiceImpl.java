@@ -2,6 +2,7 @@ package com.example.rest.api.service;
 
 import com.example.rest.api.controller.CustomerController;
 import com.example.rest.api.domain.Customer;
+import com.example.rest.api.exception.ResourceNotFoundException;
 import com.example.rest.api.mapper.CustomerMapper;
 import com.example.rest.api.model.CustomerDTO;
 import com.example.rest.api.repository.CustomerRepository;
@@ -43,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService {
 
         return customerRepository.findById(id)
                 .map(customerMapper::customerToCustomerDTO)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
@@ -78,7 +79,7 @@ public class CustomerServiceImpl implements CustomerService {
             CustomerDTO returnDto = customerMapper.customerToCustomerDTO(customerRepository.save(customer));
             returnDto.setCustomerUrl(getCustomerUrl(id));
             return returnDto;
-        }).orElseThrow(RuntimeException::new);
+        }).orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.rest.api.controller;
 
+import com.example.rest.api.exception.ResourceNotFoundException;
 import com.example.rest.api.model.CustomerDTO;
 import com.example.rest.api.service.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
@@ -41,7 +42,9 @@ class CustomerControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.openMocks(this);
 
-        mockMvc = MockMvcBuilders.standaloneSetup(customerController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(customerController)
+                .setControllerAdvice(new RestResponseEntityExceptionHandler())
+                .build();
     }
 
     @Test
@@ -162,5 +165,15 @@ class CustomerControllerTest {
                 .andExpect(status().isOk());
 
         verify(customerService).deleteCustomerById(anyLong());
+    }
+
+    @Test
+    public void testNotFoundException() throws Exception {
+
+        when(customerService.getCustomerById(anyLong())).thenThrow(ResourceNotFoundException.class);
+
+        mockMvc.perform(get(CustomerController.BASE_URL + "/222")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
     }
 }
