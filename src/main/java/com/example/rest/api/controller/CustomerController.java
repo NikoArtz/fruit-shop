@@ -3,6 +3,8 @@ package com.example.rest.api.controller;
 import com.example.rest.api.model.CustomerDTO;
 import com.example.rest.api.model.CustomerListDTO;
 import com.example.rest.api.service.CustomerService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @author martsiomchyk
  */
-
+@Api(description = "Customer Controller desc")
 @RestController
 @RequestMapping(CustomerController.BASE_URL)
 public class CustomerController {
@@ -30,6 +32,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
+    @ApiOperation(value = "This will get a list of customers", notes = "Note about getListOfCustomers()")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public CustomerListDTO getListOfCustomers() {
