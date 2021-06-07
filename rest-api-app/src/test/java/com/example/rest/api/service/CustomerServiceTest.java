@@ -1,9 +1,9 @@
 package com.example.rest.api.service;
 
+import com.example.model.CustomerDTO;
 import com.example.rest.api.controller.CustomerController;
 import com.example.rest.api.domain.Customer;
 import com.example.rest.api.mapper.CustomerMapper;
-import com.example.rest.api.model.CustomerDTO;
 import com.example.rest.api.repository.CustomerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package com.example.rest.api.controller;
 
+import com.example.model.CustomerDTO;
 import com.example.rest.api.exception.ResourceNotFoundException;
-import com.example.rest.api.model.CustomerDTO;
 import com.example.rest.api.service.CustomerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -101,7 +101,7 @@ class CustomerControllerTest {
         returnDTO.setLastName(customer.getLastName());
         returnDTO.setCustomerUrl(CustomerController.BASE_URL + "/1");
 
-        when(customerService.createNewCustomer(customer)).thenReturn(returnDTO);
+        when(customerService.createNewCustomer(any())).thenReturn(returnDTO);
 
         //when/then
         mockMvc.perform(post(CustomerController.BASE_URL)

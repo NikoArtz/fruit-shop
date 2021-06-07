@@ -1,10 +1,10 @@
 package com.example.rest.api.service;
 
 
+import com.example.model.CustomerDTO;
 import com.example.rest.api.bootstrap.Bootstrap;
 import com.example.rest.api.domain.Customer;
 import com.example.rest.api.mapper.CustomerMapper;
-import com.example.rest.api.model.CustomerDTO;
 import com.example.rest.api.repository.CategoryRepository;
 import com.example.rest.api.repository.CustomerRepository;
 import com.example.rest.api.repository.VendorRepository;

@@ -14,5 +14,5 @@ public class AbstractRestControllerTest {
             throw new RuntimeException(e);
         }
     }
-    
+
 }

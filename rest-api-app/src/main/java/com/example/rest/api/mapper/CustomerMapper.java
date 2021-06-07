@@ -1,7 +1,7 @@
 package com.example.rest.api.mapper;
 
+import com.example.model.CustomerDTO;
 import com.example.rest.api.domain.Customer;
-import com.example.rest.api.model.CustomerDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
