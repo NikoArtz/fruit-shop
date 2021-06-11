@@ -1,0 +1,53 @@
+= Fruit shop Service Docs
+Mikita Artsiomchyk;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+
+Sample application demonstrating how to use Spring REST Docs with JUnit 5.
+
+`VendorControllerTest` makes a call to a very simple service and produces three
+documentation snippets.
+
+GET VENDOR
+
+One showing how to make a request using cURL:
+
+include::{snippets}/v1/vendor-get/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/v1/vendor-get/http-request.adoc[]
+
+And one showing the HTTP response:
+
+include::{snippets}/v1/vendor-get/http-response.adoc[]
+
+Response Body:
+include::{snippets}/v1/vendor-get/response-body.adoc[]
+
+Response Fields:
+include::{snippets}/v1/vendor-get/response-fields.adoc[]
+
+NEW VENDOR
+
+One showing how to make a request using cURL:
+
+include::{snippets}/v1/vendor-new/curl-request.adoc[]
+
+One showing the HTTP request:
+
+include::{snippets}/v1/vendor-new/http-request.adoc[]
+
+And one showing the HTTP response:
+
+include::{snippets}/v1/vendor-new/http-response.adoc[]
+
+Response Body:
+include::{snippets}/v1/vendor-new/response-body.adoc[]
+
+Request Fields
+include::{snippets}/v1/vendor-new/request-fields.adoc[]
+
+Response Fields:
+include::{snippets}
